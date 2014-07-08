@@ -20,6 +20,10 @@ function getTapDiff(tapTempo, i) {
     return tapTempo._taps[i] - tapTempo._taps[i - 1];
 }
 
+function roundTempo(tapTempo, tempo) {
+    return parseFloat(tempo.toFixed(tapTempo.resolution));
+}
+
 function setTempo(tapTempo) {
     var diffs = [];
     for (var i = 0; i < tapTempo._taps.length; i = i + 1) {
@@ -27,7 +31,7 @@ function setTempo(tapTempo) {
             diffs.push(getTapDiff(tapTempo, i));
         }
     }
-    tapTempo.tempo = quarterNoteDurationToBpm(average(diffs)).toFixed(tapTempo.resolution);
+    tapTempo.tempo = roundTempo(tapTempo, quarterNoteDurationToBpm(average(diffs)));
 }
 
 function getOption(opts, name, defaultValue) {
@@ -60,9 +64,9 @@ TapTempo.prototype.tap = function () {
         this._taps.shift();
     }
 
-    setTempo(this);
 
     if (this._taps.length > 1) {
+        setTempo(this);
         this._emitTempoChange();
     }
 };

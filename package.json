@@ -27,6 +27,7 @@
     "karma": "^0.12.16",
     "karma-mocha": "^0.1.4",
     "browserify": "^4.2.0",
-    "karma-browserify": "^0.2.1"
+    "karma-browserify": "^0.2.1",
+    "karma-sinon": "^1.0.3"
   }
 }

@@ -8,7 +8,7 @@ module.exports = function(config) {
         basePath: '..',
 
         // frameworks to use
-        frameworks: ['mocha', 'chai', 'browserify'],
+        frameworks: ['mocha', 'chai', 'browserify', 'sinon'],
 
         // list of files / patterns to load in the browser
         files: [
@@ -17,7 +17,7 @@ module.exports = function(config) {
         ],
 
         preprocessors: {
-            'tap-tempo.js' : ['browserify', 'coverage'],
+            'tap-tempo.js' : ['coverage'],
             'test/*.js' : ['browserify']
         },
 
