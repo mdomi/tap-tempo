@@ -18,12 +18,16 @@
         return MS_PER_MINUTE / duration;
     }
 
+    function getTapDiff(tapTempo, i) {
+        return tapTempo._taps[i] - tapTempo._taps[i - 1];
+    }
+
     function setTempo(tapTempo) {
         var diffs = [],
             taps = tapTempo._taps;
         for (var i = 0; i < taps.length; i = i + 1) {
             if (i > 0) {
-                diffs.push(taps[i] - taps[i - 1]);
+                diffs.push(getTapDiff(tapTempo, i));
             }
         }
         tapTempo.tempo = quarterNoteDurationToBpm(average(diffs)).toFixed(tapTempo.resolution);
