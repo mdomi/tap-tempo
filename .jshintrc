@@ -16,7 +16,6 @@
     "regexp" : false,
     "undef" : true,
     "unused" : true,
-    "strict" : true,
     "trailing" : true,
     "maxparams" : 4,
     "maxlen" : 100,

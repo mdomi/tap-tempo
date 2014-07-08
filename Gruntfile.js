@@ -19,8 +19,19 @@ module.exports = function (grunt) {
             },
             dist : {
                 files : {
-                    'tap-tempo.min.js' : 'tap-tempo.js'
+                    'tap-tempo.min.js' : 'tap-tempo.min.js'
                 }
+            }
+        },
+        browserify : {
+            dist : {
+                options : {
+                    bundleOptions : {
+                        standalone : 'TapTempo'
+                    }
+                },
+                src : 'tap-tempo.js',
+                dest : 'tap-tempo.min.js'
             }
         },
         jshint : {
@@ -42,7 +53,7 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('default', ['jshint', 'uglify']);
+    grunt.registerTask('default', ['jshint', 'browserify', 'uglify']);
 
     grunt.registerTask('dev', ['watch']);
 
