@@ -43,14 +43,14 @@
     TapTempo.prototype.tap = function () {
         this._taps.push(window.performance.now());
 
+        if (this._taps.length > MAX_TAPS) {
+            this._taps.shift();
+        }
+
         setTempo(this);
 
         if (this._taps.length > 1) {
             this._emitTempoChange();
-        }
-
-        if (this._taps.length > MAX_TAPS) {
-            this._taps.shift();
         }
     };
 
