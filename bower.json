@@ -1,0 +1,21 @@
+{
+  "name": "tap-tempo",
+  "main": "tap-tempo.js",
+  "version": "0.1.0",
+  "homepage": "https://github.com/mdomi/tap-tempo",
+  "authors": [
+    "Mike Dominice <mike@mikedominice.com>"
+  ],
+  "description": "tap tempo javascript manager",
+  "keywords": [
+    "tap-tempo"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
