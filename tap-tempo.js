@@ -1,7 +1,8 @@
 (function (window) {
     'use strict';
 
-    var MAX_TAPS = 4,
+    var DEFAULT_RESOLUTION = 0,
+        MAX_TAPS = 4,
         MS_PER_SECOND = 1000,
         SECONDS_PER_MINUTE = 60,
         MS_PER_MINUTE = MS_PER_SECOND * SECONDS_PER_MINUTE;
@@ -23,9 +24,8 @@
     }
 
     function setTempo(tapTempo) {
-        var diffs = [],
-            taps = tapTempo._taps;
-        for (var i = 0; i < taps.length; i = i + 1) {
+        var diffs = [];
+        for (var i = 0; i < tapTempo._taps.length; i = i + 1) {
             if (i > 0) {
                 diffs.push(getTapDiff(tapTempo, i));
             }
@@ -33,9 +33,21 @@
         tapTempo.tempo = quarterNoteDurationToBpm(average(diffs)).toFixed(tapTempo.resolution);
     }
 
-    function TapTempo() {
-        this.resolution = 0;
+    function getOption(opts, name, defaultValue) {
+        if (opts && opts.hasOwnProperty(name)) {
+            return opts[name];
+        }
+        return defaultValue;
+    }
+
+    function addOption(tapTempo, opts, name, defaultValue) {
+        tapTempo[name] = getOption(opts, name, defaultValue);
+    }
+
+    function TapTempo(opts) {
         this._taps = [];
+        addOption(this, opts, 'resolution', DEFAULT_RESOLUTION);
+        addOption(this, opts, 'ontempochange');
     }
 
     TapTempo.prototype._emitTempoChange = function () {
